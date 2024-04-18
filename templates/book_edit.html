@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section class=" m-auto" style= "background-color: rgb(164, 161, 161); width: 50rem; opacity: 0.8;z-index: 1;">
+  <div class="card m-auto" style= 'width: 25rem;'>
+      <div class= 'card-title text-center'><h3> تأكيد/رفض الحجز باسم {{ object.name }}</h3></div>
+      <div class= 'card-body'>
+        <form class="form-control" method="POST"  > 
+          {% csrf_token %} 
+          <div class="card-body"> 
+            {{form|crispy}}
+          </div>          
+      <div class= 'card-footer'>
+          <p class= 'text-center'><button class="btn btn-info ml-2" type="submit">تعديل</button>
+          <a class= 'btn' href="{% url 'books_requests' %}">عودة</a>.</p>
+        </form>
+      </div>
+          
+  </div>
+</section>
+{% endblock content %}
+
+<div class="card m-auto" style=" background-color: rgb(164, 161, 161); width: 25rem;opacity: 0.8;z-index: 1;">
+
+  <div class="card-header">
+    <h3 class="card-title">قبول الحجز</h3>
+  </div>
+  <form class="form-control" method="POST"  > 
+    {% csrf_token %} 
+    <div class="card-body"> 
+      {{form|crispy}}
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-secondary">احجز</button>
+    </div>
+  </form><br>
+</div>

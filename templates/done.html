@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if user.is_staff %}
+    <div class="card m-auto" style="width: 18rem; opacity: 0.9;z-index: 1;">
+        <div class="card-body">
+            <h5 class="card-title">تم قبول الطلب</h5>   
+            <p class="card-text">العودة لقائمة الطلبات</p>
+            
+       </div>
+        <div class="card-footer">
+            <a href="{% url 'books_requests' %}" class="btn btn-secondary">عودة</a>
+            <a href="{% url 'home' %}" class="btn btn-secondary m-1">الصفحة الرئيسية</a>        
+        </div>
+    </div>
+
+    {% else %}
+    <div class="card m-auto" style="width: 18rem; opacity: 0.9;z-index: 1;">
+        <div class="card-body">
+            <h5 class="card-title">تم ارسال طلبك</h5>   
+            <p class="card-text">سيتم تأكيد طلبك خلال أربع ساعات <span class="text-muted">عادة خلال ساعة</span></p>
+            
+       </div>
+        <div class="card-footer">
+            <a href="{% url 'book' %}" class="btn btn-secondary">اطلب حجز آخر الآن</a>
+            <a href="{% url 'home' %}" class="btn btn-secondary m-1">الصفحة الرئيسية</a>        
+        </div>
+    </div>
+    {% endif %}
+{% endblock content %}

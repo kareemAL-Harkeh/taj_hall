@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if user.is_staff %}
+<section id="faq" class="py-5 m-auto" style= "background-color: rgb(164, 161, 161); width: 50rem; opacity: 0.8;z-index: 1;">
+    <div class="container">
+        <h2 class="text-center mb-3">
+            الحجوزات
+        </h2>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class= 'card'>
+                        <div class= 'card-title text-info text-center'>الطلبات المقبولة</div>
+                        <div class= 'card-body'>
+                            <ul>
+                                {% for book in object_list %}
+                                    {% if book.accsepted == "مقبول" %}
+                                        <li><a class= 'nav-link' href='{% url "book_detail" book.pk %}' >{{book.name}}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class= 'card'>
+                        <div class= 'card-title text-warning text-center'>الطلبات في الانتظار</div>
+                        <div class= 'card-body'>
+                            <ul>
+                                {% for book in object_list %}
+                                    {% if book.accsepted == "بانتظار" %}
+                                        <li><a class= 'nav-link' href='{% url "book_detail" book.pk %}' >{{book.name}}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class= 'card'>
+                        <div class= 'card-title text-danger text-center'>الطلبات المرفوضة</div>
+                        <div class= 'card-body'>
+                            <ul>
+                                {% for book in object_list %}
+                                    {% if book.accsepted == "مرفوض" %}
+                                        <li><a class= 'nav-link' href='{% url "book_detail" book.pk %}' >{{book.name}}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>  
+{% else %}
+<section id="faq" class="py-5 m-auto" style= "background-color: rgb(164, 161, 161); width: 50rem; opacity: 0.8;z-index: 1;">
+  <div class="container">
+      <h2 class="text-center mb-3">
+          الحجوزات
+      </h2>
+      <div class="container">
+          <div class="row">
+              <div class="col">
+                  <div class= 'card'>
+                      <div class= 'card-title text-info text-center'>الطلبات المقبولة</div>
+                      <div class= 'card-body'>
+                          <ul>
+                              {% for book in object_list %}
+                                  {% if book.accsepted == "مقبول" %}
+                                      <li>{{book.dat}} || {{book.tim}}</li>
+                                  {% endif %}
+                              {% endfor %}
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class= 'card'>
+                      <div class= 'card-title text-warning text-center'>الطلبات في الانتظار</div>
+                      <div class= 'card-body'>
+                          <ul>
+                              {% for book in object_list %}
+                                  {% if book.accsepted == "بانتظار" %}
+                                      <li>{{book.dat}} || {{book.tim}}</li>
+                                  {% endif %}
+                              {% endfor %}
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class= 'card'>
+                      <div class= 'card-title text-danger text-center'>الطلبات المرفوضة</div>
+                      <div class= 'card-body'>
+                          <ul>
+                              {% for book in object_list %}
+                                  {% if book.accsepted == "مرفوض" %}
+                                      <li>{{book.dat}} || {{book.tim}}</li>
+                                  {% endif %}
+                              {% endfor %}
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>  
+
+{% endif %}
+{% endblock content %}

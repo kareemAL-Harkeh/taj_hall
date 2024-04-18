@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card m-auto" style="width: 18rem; opacity: 0.9;z-index: 1;">
+    <div class="card-body">
+        <h5 class="card-title">عذراً</h5>   
+        <p class="card-text">يبدو أن الصالة محجوزة في الموعد الذي حددته، إذا كان يناسبك وقت آخر اطلب حجزا جديدا</p>
+        <b class="card-text">الأوقات المحجوزة في اليوم الذي حددت فيها موعدك :</b>
+        
+        {% for book in books %}
+            <p class= 'card-text'>{{book.tim}} المدة : {{book.num_of_hour}} ساعة</p>
+        {% endfor %}
+    </div>
+
+    <div class="card-footer">
+        <a href="{% url 'book' %}" class="btn btn-secondary">اطلب حجز آخر الآن</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary m-1">الصفحة الرئيسية</a>        
+    </div>
+</div>
+{% endblock content %}
